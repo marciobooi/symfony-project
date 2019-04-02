@@ -1,0 +1,8 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand text-uppercase font-weight-bold text-white">Navbar</a>
+    <form class="form-inline">
+        <a class="btn btn-outline-light mr-2" href="/whichName/public/terms">Terms</a>
+        {% set currentDate = date() %}
+        <a class="btn btn-outline-light" href="">{{ currentDate|date('d-M-y H:i') |upper|raw }}</a>
+    </form>
+</nav>
