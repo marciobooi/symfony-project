@@ -1,8 +1,13 @@
 <nav class="navbar navbar-dark sticky-top" style="background-color: rgba(0,0,0,0.8)">
-    <a class="navbar-brand text-uppercase font-weight-bold text-white animationx">Project X</a>
+    <h6  class="text-uppercase font-weight-bold text-white">Project <a class="newcolor" style="-webkit-text-stroke: 0px black;">X</a></h6>
     <form class="form-inline">
-        <a class="btn btn-outline-light mr-2" href="/whichName/public/terms">Terms</a>
-        {% set currentDate = date() %}
-        <a class="btn btn-outline-light" href="">{{ currentDate|date('d-M-y H:i') |upper|raw }}</a>
+        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">Home</a>
+        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('Terms_of_service') }}">Terms</a>
+        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Login</a>
+
+
+
     </form>
 </nav>
+
+

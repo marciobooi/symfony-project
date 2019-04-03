@@ -9,7 +9,7 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end">
-                    <h1  class="text-uppercase font-weight-bold">Project X</h1>
+                    <h1  class="text-uppercase font-weight-bold">Project <a class="newcolor" style="-webkit-text-stroke: 0px black;">X</a></h1>
                     <hr class="divider my-4 bg-dark">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
@@ -21,30 +21,13 @@
     </header>
 
     <section>
-        <div class="container">
 
 
+            {% block content %}
+                {% include 'body.html.twig' %}
+            {% endblock %}
 
 
-
-            {% set username = 'someone' %}
-            {% set itemList = [1,2,58,8,7,654,24] %}
-
-
-            <ul>
-                {% for item in itemList %}
-                    {% if item is odd %}
-                        <li>{{ item }}</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-
-            {% for i in range(0,10) %}
-                {% if loop.last %}
-                {% endif %}
-                {{ i }}
-            {% endfor %}
-        </div>
     </section>
 
 

@@ -4,6 +4,16 @@ h1{
     color: white;
     animation: myanimation 10s infinite;
 }
+.newcolor{
+    animation: newcolor 10s infinite;
+}
+@keyframes newcolor {
+    0% { color:midnightblue;}
+    25%{color:gray;}
+    50%{color:lightblue;}
+    75%{color:lightsteelblue;}
+    100% {color:lightslategray;}
+}
 
 
 @keyframes myanimation {
@@ -38,6 +48,124 @@ h1{
             -1px 1px 5px lightslategray,
             1px 1px 5px lightslategray;}
 }
+
+
+
+/************************************
+***************BODY******************
+*************************************/
+
+/* The magic */
+.col {
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*
+      Visibility delay gives the previously hovered element time to slide out before disappearing.
+      Remove the `visibility` transition to slide in current element without sliding out previous element
+    */
+    transition: all 0.275s ease-in-out, visibility 0s 0.275s;
+    visibility: hidden;
+    will-change: transform;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+.row:hover ~ .row .slide {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+.row:hover .slide {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+.row:hover .col:hover ~ .col .slide {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+.row:hover .col:hover .slide {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+/* Pen styling */
+* {
+    box-sizing: border-box;
+}
+
+
+.col {
+    color: #fff;
+    min-height: 260px;
+    position: relative;
+}
+.col h2 {
+    font-weight: 300;
+    font-size: 1.33333rem;
+    line-height: 1.25;
+    margin: 0;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 0;
+}
+
+.col:nth-child(2) {
+    min-width: 20%;
+}
+
+.col:nth-child(4) {
+    min-width: 33%;
+}
+
+.col:nth-child(3) + .col:nth-child(3) {
+    min-width: 50%;
+}
+
+.photo-container {
+    background: #0f0523 50% 50% / cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: 1s;
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+}
+.photo-container::before {
+    background: linear-gradient(transparent, #bdc3c780, #2c3e50);
+
+
+
+
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.col:hover .photo-container {
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+}
+
+.slide {
+    background: #00000085;
+    padding: 0 1.5rem;
+}
+
+
 
 
 
