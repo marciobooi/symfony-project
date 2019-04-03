@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -12,8 +14,8 @@ class User implements UserInterface
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid")
      */
     private $id;
 
@@ -34,7 +36,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -44,7 +46,7 @@ class User implements UserInterface
     private $termAccepted;
 
     /**
-     * @ORM\Column(type="guid", nullable=true)
+     * @ORM\Column(type="guid", nullable=true, unique=true)
      */
     private $activationToken;
 
@@ -63,7 +65,23 @@ class User implements UserInterface
      */
     private $deletedAt;
 
-    public function getId(): ?int
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="sharer", orphanRemoval=true)
+     */
+    private $pictures;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Picture", mappedBy="lovers")
+     */
+    private $lovedPictures;
+
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+        $this->lovedPictures = new ArrayCollection();
+    }
+
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -204,6 +222,65 @@ class User implements UserInterface
     public function setDeletedAt(?\DateTimeInterface $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setSharer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getSharer() === $this) {
+                $picture->setSharer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getLovedPictures(): Collection
+    {
+        return $this->lovedPictures;
+    }
+
+    public function addLovedPicture(Picture $lovedPicture): self
+    {
+        if (!$this->lovedPictures->contains($lovedPicture)) {
+            $this->lovedPictures[] = $lovedPicture;
+            $lovedPicture->addLover($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLovedPicture(Picture $lovedPicture): self
+    {
+        if ($this->lovedPictures->contains($lovedPicture)) {
+            $this->lovedPictures->removeElement($lovedPicture);
+            $lovedPicture->removeLover($this);
+        }
 
         return $this;
     }
