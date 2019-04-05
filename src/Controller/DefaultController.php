@@ -15,37 +15,38 @@ class DefaultController
      *
      * @Route("/", name="homepage")
      * @return Response
-     * @throws \Twig\Error\ErrorLoader
+     * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws  \Twig\Error\SyntaxError
      */
 
     public function homepageAction(Environment $twig)
     {
-        $color = 'red';
+
 
         return new Response(
             $twig->render(
-            'default/homepage.html.twig',
-                ['color' => $color
-                ]
+                'default/homepage.html.twig'
+
             )
         );
     }
 
 
     /**
-     *  @Route("/terms", name="Terms_of_service")
+     * @Route("/terms", name="Terms_of_service")
      * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws  \Twig\Error\SyntaxError
      */
-    public function termsOfServiceAction()
+    public function termsOfServiceAction(Environment $twig)
     {
-        return new Response('
-<!DOCTYPE><html>
-<body>
-Terms of service... <a href="/whichName/public/">Home</a>
-</body>
-</html> ');
-    }
+        return new Response(
+            $twig->render(
+                '/terms.html.twig'
 
+            )
+        );
+    }
 }
