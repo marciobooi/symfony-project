@@ -165,7 +165,159 @@ h1{
     padding: 0 1.5rem;
 }
 
+/************************************
+*********   type effect    ***********
+*************************************/
+
+
+
+.typewriter p {
+    color: #000000;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    -webkit-animation:
+            typing 3.5s steps(30, end),
+            blink-caret .5s step-end infinite;
+    animation:
+            typing 3.5s steps(30, end),
+            blink-caret .5s step-end infinite;
+}
+
+
+@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
 
 
 
 
+
+
+/************************************
+*********   footer    ***********
+*************************************/
+
+.content{
+    flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    min-height: 200px;
+}
+#myFooter{
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+#myFooter {
+    background-color: rgba(0,0,0,0.8);
+    color:white;
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+
+
+
+}
+
+#myFooter .footer-copyright{
+
+    padding-top:3px;
+    padding-bottom:3px;
+    text-align: center;
+    color:white;
+}
+
+#myFooter .footer-copyright p{
+    margin:10px;
+    color: #ffffff;
+}
+
+#myFooter ul{
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+
+}
+
+#myFooter h5{
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a{
+    color: #000000;
+    text-decoration: none;
+}
+
+#myFooter a:hover, #myFooter a:focus{
+    text-decoration: none;
+    color:white;
+}
+
+#myFooter .myCols{
+    text-align: center;
+}
+
+#myFooter .social-networks{
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 38px;
+    text-shadow: 3px 3px 16px #272634;
+}
+
+#myFooter .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+    text-shadow: 3px 3px 16px #272634;
+}
+
+#myFooter .social-networks a:hover{
+    text-decoration: none;
+
+}
+
+#myFooter .facebook:hover{
+    color:#0077e2;
+
+}
+
+#myFooter .google:hover{
+    color:#ef1a1a;
+}
+
+#myFooter .twitter:hover{
+    color: #00aced;
+}
+
+#myFooter .fa-linkedin-in:hover{
+    color:#ef1a1a;
+}
+
+@media screen and (max-width: 767px){
+    #myFooter {
+        text-align: center;
+    }
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="h3 mb-3 font-weight-normal">Register</h2>
+
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center container ">
+                    <form method="post">
+                        {{ form(registrationForm) }}
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block stylesheets %}{{ parent() }} <link rel="stylesheet" href="../templates/CSS/register.css"> {% endblock %}
+
+
+
+

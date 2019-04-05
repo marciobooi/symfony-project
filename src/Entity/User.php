@@ -5,10 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -20,7 +24,10 @@ class User implements UserInterface
     private $id;
 
     /**
+     *
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="4", max="180")
      */
     private $username;
 
@@ -31,17 +38,35 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="8", max="180")
+     * @Assert\Regex(
+     *    pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",
+     *    message=  "Password must have a minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:"
+     *
+     *
+     *
+     * )
      */
     private $password;
 
     /**
+     *
+     *
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     *
+     *
      */
     private $email;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\IsTrue()
+     *
      */
     private $termAccepted;
 
@@ -77,6 +102,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->pictures = new ArrayCollection();
         $this->lovedPictures = new ArrayCollection();
     }

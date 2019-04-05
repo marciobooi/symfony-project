@@ -1,10 +1,18 @@
 <nav class="navbar navbar-dark sticky-top" style="background-color: rgba(0,0,0,0.8)">
     <h6  class="text-uppercase font-weight-bold text-white">Project <a class="newcolor" style="-webkit-text-stroke: 0px black;">X</a></h6>
-    <form class="form-inline">
-        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">Home</a>
-        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('Terms_of_service') }}">Terms</a>
-        <a class="btn btn-outline-light mr-2 {% if app.request.attributes.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Login</a>
-
+    <form class="form" style="">
+        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">
+            {{ 'NAV.HOME' | trans }}
+        </a>
+        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('Terms_of_service') }}">
+            {{ 'NAV.TERMS' | trans }}
+        </a>
+        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">
+            {{ 'NAV.LOGIN' | trans }}
+        </a>
+        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'app_register' %} active {% endif %}" href="{{ path('app_register') }}">
+            {{ 'NAV.REGISTER' | trans }}
+        </a>
 
 
     </form>

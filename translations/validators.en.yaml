@@ -1,0 +1,3 @@
+FORM:
+  USER:
+    PASSWORD: 'Password must match'
