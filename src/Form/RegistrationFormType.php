@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,26 +20,21 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add(
-                'Password',
-                RepeatedType::class,
-                [
-                        'type' => PasswordType::class,
-                        'invalid_message' => 'FORM.USER.PASSWORD.ERROR',
-                        'first_options' => ['label' => 'FORM.USER.PASSWORD.LABEL'],
-                        'second_options' => ['label' => 'FORM.USER.PASSWORD.LABEL2']
-                ]
-            )
+            ->add('username', TextType::class, ['label' => 'FORM.USER.USERNAME.LABEL'])
             ->add('email', EmailType::class)
-            ->add(
-                'termAccepted',
-                CheckboxType::class,
-                ['label' => 'Accept terms of service']
-            );
-        if($options['standalone']) {
-            $builder->add('submit', SubmitType::class);
-        };
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'FORM.USER.PASSWORD.ERROR',
+                'first_options' => ['label' => 'FORM.USER.PASSWORD.LABEL'],
+                'second_options' => ['label' => 'FORM.USER.PASSWORD.LABEL2']
+            ])
+            ->add('termAccepted', CheckboxType::class, ['label' => 'FORM.USER.TOS.LABEL'])
+        ;
+
+        if ($options['standalone']) {
+            $builder->add('Submit', SubmitType::class,
+                ['attr' => ['class' => 'btn-success']]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
