@@ -1,3 +1,4 @@
 FORM:
   USER:
-    PASSWORD: 'Password must match'
+    PASSWORD:
+      ERROR: 'Passwords should match'
