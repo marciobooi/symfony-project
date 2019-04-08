@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block title %}Add Pics{% endblock %}
+
+
+
+
+
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}
+
+
+
+
+{% block stylesheets %}{{ parent() }}
+    <link rel="stylesheet" href="../../templates/CSS/main.css">
+    <link rel="stylesheet" href="../../templates/CSS/login.css"> {% endblock %}
+{% block javascripts %}
+    <script src="../../templates/js/script.js"></script>
+
+{% endblock %}

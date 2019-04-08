@@ -18,6 +18,17 @@ FORM:
       LABEL: 'Accept terms of services'
     USERNAME:
       LABEL: 'Username'
+    PICTURE:
+      TITLE:
+        LABEL: 'Title'
+      DESCRIPTION:
+        LABEL: 'Description'
+      TAGS:
+        LABEL: 'Tags'
+      FILE:
+        LABEL: 'Choose a picture'
+      SUBMIT:
+        LABEL: 'Submit'
 MAIL:
   REGISTER:
     TITLE: 'Activate your account'
