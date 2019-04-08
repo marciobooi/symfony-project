@@ -1,0 +1,12 @@
+.pHover:hover{
+    padding: 1%;
+    border: 1px solid gray;
+    border-radius: 5px 20px 5px;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+p{
+    margin-left: 10px;
+}

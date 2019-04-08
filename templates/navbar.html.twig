@@ -1,34 +1,41 @@
 <nav class="navbar navbar-dark sticky-top" style="background-color: rgba(0,0,0,0.8)">
     <h6  class="text-uppercase font-weight-bold text-white">Project <a class="newcolor" style="-webkit-text-stroke: 0px black;">X</a></h6>
+
+
+
     <form class="form" style="">
         <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">
             {{ 'NAV.HOME' | trans }}
         </a>
-        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('Terms_of_service') }}">
+        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('term_of_service') }}">
             {{ 'NAV.TERMS' | trans }}
         </a>
-        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">
-            {{ 'NAV.LOGIN' | trans }}
-        </a>
-        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'app_register' %} active {% endif %}" href="{{ path('app_register') }}">
-            {{ 'NAV.REGISTER' | trans }}
-        </a>
+
+
+
+
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            
-            <ul>
-                <li class="nav-item {% if app.request.attributes.get('_route')  == 'app_logout' %}active{% endif %}">
-                    <a class="nav-link" href="{{ path('app_logout') }}">
+
+
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route')  == 'app_logout' %}active{% endif %}" href="{{ path('app_logout') }}">
                         {{ 'NAV.LOGOUT'|trans }}
-                    </a>
-                </li>
-            {% else %}
+                </a>
+
                 <h3>{{ 'NAV.LOGGED_AS'|trans({'%name%' : app.user.username()}) }}</h3>
-            <li class="nav-item {% if app.request.attributes.get('_route')  == 'app_register' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('app_register') }}">
+
+            {% else %}
+
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">
+                    {{ 'NAV.LOGIN' | trans }}
+                </a>
+
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route')  == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">
                     {{ 'NAV.REGISTER'|trans }}
                 </a>
-            </li>
-            </ul>
+
+                {% endif %}
+
+
     </form>
 </nav>
 

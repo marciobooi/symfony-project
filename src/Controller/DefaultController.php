@@ -30,12 +30,15 @@ class DefaultController
     /**
      * @Route("/terms", name="term_of_service")
      * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function termsOfServiceAction()
+    public function termsOfServiceAction(Environment $twig)
     {
-        return new Response('
-            <p>Terms of service...</p>
-            <a href="/">Home</a>
-            ');
+        return new Response(
+            $twig->render(
+                '/terms.html.twig'
+                ));
     }
 }

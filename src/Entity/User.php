@@ -13,9 +13,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
+
+    private const CIPHER = 'AES-256-CBC';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
@@ -100,11 +104,26 @@ class User implements UserInterface
      */
     private $lovedPictures;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $active = false;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $emailVector;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->pictures = new ArrayCollection();
         $this->lovedPictures = new ArrayCollection();
+
+        $ivLength = openssl_cipher_iv_length(self::CIPHER);
+        $this->setEmailVector(
+            openssl_random_pseudo_bytes($ivLength)
+        );
     }
 
     public function getId(): ?string
@@ -310,4 +329,70 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    private function getEmailVector(): ?string
+    {
+        return base64_decode($this->emailVector);
+    }
+
+    private function setEmailVector(string $emailVector): self
+    {
+        $this->emailVector = base64_encode($this->emailVector);
+
+        return $this;
+    }
+
+
+        /**
+         * @ORM\PrePersist()
+         * @ORM\PreUpdate()
+        */
+    public function encryptEmail()
+    {
+        $this->setEmail(
+            openssl_encrypt(
+                $this->getEmail(),
+                self::CIPHER,
+                md5($this->getUsername()),
+                0,
+                $this->getEmailVector()
+            )
+        );
+
+    }
+
+    /**
+     * @ORM\PostLoad()
+     *
+     */
+    public function decryptEmail()
+    {
+        $this->setEmail(
+            openssl_decrypt(
+                $this->getEmail(),
+                self::CIPHER,
+                md5($this->getUsername()),
+                0,
+                $this->getEmailVector()
+            )
+        );
+    }
 }
+
+
+
+
+
+
