@@ -4,11 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
-    register_mail_subject: 'Activate your account'
-    register_mail_sender: 'noreply-numeripic@gmail.com'
-    register_mail_txt_template: 'registration/txt-registration-mail.txt.twig'
-    register_mail_html_template: 'registration/html-registration-mail.html.twig'
+    locale:                         'en'
+    register_mail_subject:          'Activate your account'
+    register_mail_sender:           'noreply-numeripic@gmail.com'
+    register_mail_txt_template:     'registration/txt-registration-mail.txt.twig'
+    register_mail_html_template:    'registration/html-registration-mail.html.twig'
+    upload_directory:               'kernel.root_dir%/../var/uploads/'
 
 services:
     # default configuration for services in *this* file
@@ -33,7 +34,7 @@ services:
 
     App\Mailer\RegistrationMailer:
         arguments:
-            $subject: '%register_mail_subject%'
-            $sender: '%register_mail_sender%'
-            $txtTemplate: '%register_mail_txt_template%'
-            $htmlTemplate: '%register_mail_html_template%'
+            $subject:           '%register_mail_subject%'
+            $sender:            '%register_mail_sender%'
+            $txtTemplate:       '%register_mail_txt_template%'
+            $htmlTemplate:      '%register_mail_html_template%'

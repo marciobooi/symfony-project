@@ -42,7 +42,6 @@ class RegistrationController extends AbstractController
             $mailer->sendMail($user);
 
 
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

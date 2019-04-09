@@ -22,16 +22,14 @@ html,body{
     align-content: center;
 }
 
-.card{
-    height: 570px;
-    margin-top: 50px;
+.card {
+    height: 584px;
+    margin-top: 48px;
     margin-bottom: auto;
-    width: 500px;
+    width: 509px;
     background-color: rgba(0,0,0,0.5) !important;
 }
-h2{
-    color:white;
-}
+
 .social_icon span{
     font-size: 60px;
     margin-left: 10px;
@@ -46,9 +44,7 @@ h2{
 .card-header h3{
     color: white;
 }
-label{
-    color:white;
-}
+
 .social_icon{
     position: absolute;
     right: 20px;
@@ -68,16 +64,11 @@ input:focus{
 
 }
 
-.remember{
-    color: white;
+h2{
+    color:white;
 }
-
-.remember input
-{
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    margin-right: 5px;
+label{
+    color:white;
 }
 
 .login_btn{

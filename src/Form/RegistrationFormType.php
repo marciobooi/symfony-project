@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
 
         if ($options['standalone']) {
             $builder->add('Submit', SubmitType::class,
-                ['attr' => ['class' => 'btn-success']]);
+                ['attr' => ['class' => 'btn btn-outline-light']]);
         }
     }
 

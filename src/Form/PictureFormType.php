@@ -20,24 +20,34 @@ class PictureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'FORM.PICTURE.TITLE.LABEL'])
-            ->add('description', TextareaType::class, ['label' => 'FORM.PICTURE.DESCRIPTION.LABEL', 'required' => false])
+            ->add('title',
+                TextType::class,
+                ['label' => 'FORM.USER.PICTURE.TITLE.LABEL'])
+
+
+            ->add('description',
+                TextareaType::class,
+                ['label' => 'FORM.USER.PICTURE.DESCRIPTION.LABEL',
+                'required' => false])
+
+
             ->add('tags',
                 EntityType::class, [
-                'label' => 'FORM.PICTURE.TAGS.LABEL',
+                'label' => 'FORM.USER.PICTURE.TAGS.LABEL',
                 'class' => Tag::class,
                 'choice_label' => 'label',
-                'multiple' => true
+                'multiple' => true,
+                'required' => false
                 ]
             )
             ->add('file',
                 FileType::class,
                 [
-                    'label' => 'FORM.PICTURE.FILE.LABEL',
+                    'label' => 'FORM.USER.PICTURE.FILE.LABEL',
                     'mapped' => false,
                     'constraints' => [
                         new Image([
-                            'mimeTypes' => ['image/png', 'image/jpg'],
+                            'mimeTypes' => ['image/png', 'image/jpeg'],
                             'maxSize' => '5M',
                             'minWidth' => 640,
                             'minHeight' => 640,
@@ -50,8 +60,8 @@ class PictureFormType extends AbstractType
                 'submit',
             SubmitType::class,
             [
-                'label' => 'FORM.PICTURE.SUBMIT.LABEL',
-                'attr' => ['class' => 'btn-success']
+                'label' => 'FORM.USER.PICTURE.SUBMIT.LABEL',
+                'attr' => ['class' => 'btn btn-outline-light mr-1 ']
             ]);
         }
 

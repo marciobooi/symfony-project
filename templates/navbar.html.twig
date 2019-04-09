@@ -3,13 +3,9 @@
 
 
 
-    <form class="form" style="">
-        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">
-            {{ 'NAV.HOME' | trans }}
-        </a>
-        <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('term_of_service') }}">
-            {{ 'NAV.TERMS' | trans }}
-        </a>
+        <form class="form" style="">
+
+
 
 
 
@@ -17,9 +13,22 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
 
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'homepage' %} active {% endif %}" href="{{ path('homepage') }}">
+                    {{ 'NAV.HOME' | trans }}
+                </a>
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route')  == 'add-picture' %}active{% endif %}" href="{{ path('add_picture') }}">
+                    {{ 'NAV.ADDPICTURE'|trans }}
+                </a>
                 <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route')  == 'app_logout' %}active{% endif %}" href="{{ path('app_logout') }}">
                         {{ 'NAV.LOGOUT'|trans }}
                 </a>
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('term_of_service') }}">
+                    {{ 'NAV.TERMS' | trans }}
+                </a>
+
+
+
+
 
                 <h5 class="text-white mt-1 text-center">{{ 'NAV.LOGGED_AS'|trans({'%name%' : app.user.username()}) }}</h5>
 
@@ -32,8 +41,12 @@
                 <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route')  == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">
                     {{ 'NAV.REGISTER'|trans }}
                 </a>
+                <a class="btn btn-outline-light mr-1 {% if app.request.attributes.get('_route') == 'term_of_service' %} active {% endif %}" href="{{ path('term_of_service') }}">
+                    {{ 'NAV.TERMS' | trans }}
+                </a>
 
-                {% endif %}
+
+{% endif %}
 
 
     </form>

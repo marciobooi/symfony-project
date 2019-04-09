@@ -6,20 +6,36 @@
 {% block title %}Add Pics{% endblock %}
 
 
+ {% block body %}
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h3 mb-3 font-weight-normal">{{ 'FORM.USER.PICTURE.INFO' | trans }}</h2>
+
+            </div>
+            <div class="card-body d-flex justify-content-center align-items-center container ">
 
 
+                    {{ form(form) }}
 
 
-{% block body %}
-    {{ form(form) }}
-{% endblock %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ {% endblock %}
+
+
 
 
 
 
 {% block stylesheets %}{{ parent() }}
     <link rel="stylesheet" href="../../templates/CSS/main.css">
-    <link rel="stylesheet" href="../../templates/CSS/login.css"> {% endblock %}
+    <link rel="stylesheet" href="../../templates/CSS/addpics.css"> {% endblock %}
 {% block javascripts %}
     <script src="../../templates/js/script.js"></script>
 

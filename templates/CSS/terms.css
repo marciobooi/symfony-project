@@ -1,12 +1,16 @@
 .pHover:hover{
-    padding: 1%;
-    border: 1px solid gray;
+
     border-radius: 5px 20px 5px;
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
+    background-color: #f8f8ff;
 }
 
 p{
-    margin-left: 10px;
+    margin-left: 18px;
+}
+
+align-self-baseline{
+    padding: 2px;
 }

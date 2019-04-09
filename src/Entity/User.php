@@ -349,7 +349,7 @@ class User implements UserInterface
 
     private function setEmailVector(string $emailVector): self
     {
-        $this->emailVector = base64_encode($this->emailVector);
+        $this->emailVector = base64_encode($emailVector);
 
         return $this;
     }

@@ -100,7 +100,9 @@ h1{
     visibility: visible;
     transition-delay: 0s;
 }
-
+.row:nth-child(3) {
+    border:1px solid red;
+}
 /* Pen styling */
 * {
     box-sizing: border-box;
