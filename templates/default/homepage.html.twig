@@ -13,7 +13,6 @@
                 </div>
                 <div class="align-self-baseline typewriter">
                     <p class='font-weight-light'>Our first Symfony project</p>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="">Find Out More</a>
                     <a class="goDown newcolor" href="#gallary"><i class="far fa-arrow-alt-circle-down"></i></a>
                 </div>
 
@@ -23,6 +22,9 @@
     </header>
 
     <section id="gallary">
+        <div class="'count my-4">
+            Total pictures count : {{ pictures.getTotalItemCount }}
+        </div>
         <div class="row">
 
   {% for picture in pictures %}
@@ -31,16 +33,21 @@
             <div class="col">
                 <div class="photo-container" style="background-image:url({{ path('get_picture_content', {'picture': picture.getId()}) }});"></div>
                 <h2>{{ picture.getTitle() }} </h2>
-                <p>{% for tag in picture.getTags() %}</p>
+                {% for tag in picture.getTags() %}
+                        <span>{{ tag.getLabel() }}</span>
+                    {% endfor %}
                 <div class="slide">
                     <p>{{ picture.getSharer().getUsername() }} </p>
-                    <span>{{ tag.getLabel() }}</span>
-                    {% endfor %}
-
                 </div>
+
+
+
             </div>
 {% endfor %}
 
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pictures) }}
         </div>
     </section>
 
@@ -48,13 +55,13 @@
         <div class="container-fluid" style="background-color: #00aced; height: 500px;">
 
         </div>
+  </section>
 
-}
-
-
-
-    </section>
 
 {% endblock %}
 
 
+
+{% block stylesheets %}{{ parent() }}
+    <link rel="stylesheet" href="../CSS/main.css">
+{% endblock %}

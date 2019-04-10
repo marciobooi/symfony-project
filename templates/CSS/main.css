@@ -100,9 +100,7 @@ h1{
     visibility: visible;
     transition-delay: 0s;
 }
-.row:nth-child(3) {
-    border:1px solid red;
-}
+
 /* Pen styling */
 * {
     box-sizing: border-box;
@@ -124,6 +122,16 @@ h1{
     right: 1.5rem;
     z-index: 0;
 }
+.col:nth-of-type(4) {
+    flex-basis: 100%;
+}
+.col:nth-of-type(5) {
+    flex-basis: 50%;
+}
+.col:nth-of-type(6) {
+    flex-basis: 50%;
+}
+
 
 .col:nth-child(2) {
     min-width: 20%;
@@ -323,6 +331,50 @@ h1{
     color:#ef1a1a;
 }
 
+
+
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 2.25;
+    color: white;
+    background-color: rgba(0,0,0,0.5) !important;
+    border: 1px solid orange;
+    margin: 1px;
+}
+ul{
+    justify-content: center;
+    margin-top:10px;
+
+}
+.page-link:hover {
+    z-index: 2;
+    color: orange;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.5) !important;
+    border-color: darkorange;
+}
+.page-item:last-child .page-link {
+    margin-left: 10px;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    margin-right: 10px;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: orange;
+    background-color: rgba(0,0,0,0.5) !important;
+    border-color: darkorange;
+}
 @media screen and (max-width: 767px){
     #myFooter {
         text-align: center;
